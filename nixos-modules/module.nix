@@ -61,7 +61,7 @@ let
     ps.uvicorn
     ps.watchdog
   ]);
-  cfg              = config.services.funkwhale;
+  cfg = config.services.funkwhale;
   databasePassword = if (cfg.database.passwordFile != null) 
     then builtins.readFile cfg.database.passwordFile
     else cfg.database.password;
@@ -80,7 +80,7 @@ let
     "CACHE_URL=redis://localhost:${toString config.services.redis.port}/0"
     "MEDIA_ROOT=${cfg.api.mediaRoot}"
     "STATIC_ROOT=${cfg.api.staticRoot}"
-    "DJANGO_SECRET_KEY=(cat ${cfg.api.djangoSecretKeyFile})"
+    "DJANGO_SECRET_KEY=$(cat ${cfg.api.djangoSecretKeyFile})"
     "MUSIC_DIRECTORY_PATH=${cfg.musicPath}"
     "MUSIC_DIRECTORY_SERVE_PATH=${cfg.musicPath}"
     "FUNKWHALE_FRONTEND_PATH=${cfg.dataDir}/front"
